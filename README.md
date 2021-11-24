@@ -1,7 +1,7 @@
 
 <h1 align="center"> 📌 To Do List </h1>
 
-  > Site web permettant de se faire une liste de choses à faire puis de cocher les tâches qui ont été faites.
+  > Site web permettant de se faire une liste de choses à faire puis de cocher les tâches qui ont été faites !
 
 <h2> 💾 Auteurs </h2>
 
