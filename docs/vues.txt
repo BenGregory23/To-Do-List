@@ -6,6 +6,7 @@ Listes des différentes vues :
 - Page listes de tâches privées
 - Page avec les tâches d'une listes publiques
 - Page avec les tâches d'une listes privées
+- Page d'erreur
 
 
 
