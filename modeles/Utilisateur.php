@@ -6,10 +6,14 @@ class Utilisateur
     public string $email;
     public string $motDePasse;
 
-    public function __construct( int $id, string $email, string $motDePasse){
-        $this->id = $id;
-        $this->email = $email;
-        $this->motDePasse = $motDePasse;
+    public function __construct(string $pseudo, string $mdp){
+        global $base,$login,$mdpbase;
+        $pseudo=Nettoyage::nettoyer_string($pseudo);
+        $mdp=Nettoyage::nettoyer_string($mdp);
+        $con=new Connection($base,$login,$mdpbase);
+        $uG=new UserGateway($con);
+        $mdp2=$uG->getPass($pseudo);
+
     }
 
     public function getId() : int{

@@ -13,12 +13,12 @@ error_reporting(E_ALL);
 //ce fichier doit faire appel au controlleur
 
 
-require 'config/Connection.php';
-require 'modeles/TacheGateway.php';
+require('config/Connection.php');
+require('modeles/TacheGateway.php');
 
 $dsn = 'mysql:host=localhost;dbname=toDoList';
-$user = "ben";
-$mdp = "Choco2323";
+$user = "ZartaX0O3";
+$mdp = "Panda567&";
 
 
 
@@ -29,8 +29,6 @@ try{
 catch(Exception $e){
     echo $e;
 }
-
-
 
 ?>
 
