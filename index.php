@@ -11,7 +11,7 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 //ce fichier doit faire appel au controlleur
-//require_once __DIR__.'/config/config.php';
+
 
 require 'config/Connection.php';
 require 'modeles/TacheGateway.php';
