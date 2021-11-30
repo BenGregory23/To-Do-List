@@ -1,8 +1,8 @@
 <?php
 
-$database['login']= "Benchoco";
-$database['password']= "makougoum";
-$database['name']= "dbarvandamme";
+$database['login']= "ben";
+$database['password']= "Choco2323";
+$database['name']= "toDoList";
 
 $vues['erreur']= "vues/erreur.php";
 $vues['erreur']= "vues/pageAccueil.php";

@@ -1,6 +1,6 @@
 <?php
 
-require_once('./config/config.json');
+require_once('config.php');
 
 class Connection extends PDO {
 
@@ -29,7 +29,6 @@ class Connection extends PDO {
 
     public function getResults() : array {
         return $this->stmt->fetchall();
-
     }
 }
 

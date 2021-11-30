@@ -4,14 +4,35 @@
     <title>ToDo List Application PHP and MySQL</title>
 </head>
 <body>
-<div class="heading">
-    <h2>ToDo List Application PHP and MySQL database</h2>
-</div>
-<form method="post" action="index.php" class="input_form">
-    <label>
-        <input type="text" name="task" class="task_input">
-    </label>
-    <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
-</form>
+
+
+
+<?php
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+//ce fichier doit faire appel au controlleur
+//require_once __DIR__.'/config/config.php';
+
+require 'config/Connection.php';
+require 'modeles/TacheGateway.php';
+
+$dsn = 'mysql:host=localhost;dbname=toDoList';
+$user = "ben";
+$mdp = "Choco2323";
+
+
+
+try{
+    $con = new Connection($dsn, $user, $mdp);
+    require 'vues/accueil.php';
+}
+catch(Exception $e){
+    echo $e;
+}
+
+
+
+?>
+
 </body>
 </html>

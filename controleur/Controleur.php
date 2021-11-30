@@ -2,9 +2,9 @@
 
 require_once("../config/Connection.php");
 
-$user= 'Benchoco';
-$pass='makougoum';
-$dsn='mysql:host=localhost;dbname=dbarvandamme';
+$user= 'ben';
+$pass='Choco2323';
+$dsn='mysql:host=localhost;dbname=toDoList';
 
 class Controleur
 {
