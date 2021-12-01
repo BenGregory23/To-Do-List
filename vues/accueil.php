@@ -17,7 +17,7 @@
 
 try{
     $query = "SELECT * FROM tache";
-    
+
     $con->executeQuery($query);
     $results = $con->getResults();
 
@@ -25,13 +25,6 @@ try{
         echo '<div class="tache">' . '<input type="checkbox"> ' . '<label>'  . $value['nom'] . " - ETAT :  " . $value['etat']  .'</div>' . '<br>';
     }
 
-
-    /*
-    echo 'test';
-    foreach ($Tab_de_taches as $row){
-        echo $row['nom'] . '<br>';
-    }
-    */
 }
 catch (Exception $e){
     echo $e;

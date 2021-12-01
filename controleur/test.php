@@ -1,6 +1,6 @@
 <?php
 
-require  'Validation.php';
+require 'config/Validation.php';
 
 Validation::val_form($_POST["nom"], $_POST["description"]);
 

@@ -21,8 +21,9 @@ class TacheGateway
         //code update
     }
 
-    public function delete($id, $nom, $description, $etat){
-        //code delete
+    public function deleteById($id){
+        $query = "DELETE FROM tache WHERE ID=:id";
+        $this->con->executeQuery($query, array(':id'=> array($id, PDO::PARAM_INT)));
     }
 
     public function FindByName($nom){
