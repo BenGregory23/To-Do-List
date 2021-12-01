@@ -1,8 +1,8 @@
 <?php
 require 'Connection.php';
 
-$database['login']= "ben";
-$database['password']= "Choco2323";
+$database['login']= "ZartaXO3";
+$database['password']= "Panda567&";
 $database['name']= "toDoList";
 
 echo $database['login'];

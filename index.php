@@ -13,11 +13,22 @@ error_reporting(E_ALL);
 //ce fichier doit faire appel au controlleur
 
 
-require 'config/config.php';
-require 'DAL/TacheGateway.php';
+require 'config/Connection.php';
+require 'modeles/TacheGateway.php';
+
+$dsn = 'mysql:host=localhost;dbname=toDoList';
+$user = "ben";
+$mdp = "Choco2323";
 
 
-require 'vues/accueil.php';
+
+try{
+    $con = new Connection($dsn, $user, $mdp);
+    require 'vues/accueil.php';
+}
+catch(Exception $e){
+    echo $e;
+}
 
 
 
