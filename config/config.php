@@ -3,13 +3,11 @@ require 'Connection.php';
 
 $database['login']= "ZartaXO3";
 $database['password']= "Panda567&";
-$database['name']= "toDoList";
-
-echo $database['login'];
+$database['name']= "todolist";
 
 $dsn = 'mysql:host=localhost;dbname=toDoList';
-$user = "ben";
-$mdp = "Choco2323";
+$user = "ZartaX0O3";
+$mdp = "Panda567&";
 
 try{
     $con = new Connection($dsn, $user, $mdp);

@@ -8,13 +8,11 @@ class TacheGateway
         $this->con = $con;
     }
 
-    public function insert($id, $nom, $description, $etat){
-        $query = "INSERT INTO tache VALUES(:id, :nom, :description, :etat)";
+    public function insert($nom, $description){
+        $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 'A Faire', 1)";
         $this->con->executeQuery($query, array(
-            ':id'=>array($id, PDO::PARAM_INT),
             ':nom'=> array($nom, PDO::PARAM_STR),
-            ':description'=>array($description, PDO::PARAM_STR),
-            ':etat'=>array($etat)));
+            ':description'=>array($description, PDO::PARAM_STR)));
     }
 
     public function update($id, $nom, $description, $etat){

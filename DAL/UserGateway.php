@@ -3,7 +3,7 @@
 
 class UserGateway
 {
-    private Connection $con;
+    private $con;
 
     public function __construct(Connection $con)
     {
@@ -60,7 +60,7 @@ class UserGateway
      */
     public function inscription(string $pseudo, string $password){
         try{
-            $query = 'INSERT INTO utilisateurs VALUES (:pseudo,:password)';
+            $query = 'INSERT INTO users VALUES (NULL, :pseudo, :password)';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR),

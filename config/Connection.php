@@ -13,7 +13,7 @@ class Connection extends PDO {
 
 
     /** * @param string $query
-     * @param array $parameters *
+     * @param array $parameters
      * @return bool Returns `true` on success, `false` otherwise
      */
 
