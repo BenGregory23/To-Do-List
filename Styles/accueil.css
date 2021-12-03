@@ -5,6 +5,29 @@ body{
     background-image: url(../assets/blob-scene-haikei.svg);
     background-size: cover;
     color: white;
+    font-family: "Liberation Sans";
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+nav button {
+    padding: 10px;
+    border-radius: 100px;
+    border: transparent;
+    min-width: 150px;
+    margin: 5px;
+    transition: ease-in-out 0.3s;
+}
+
+
+nav button:hover{
+
 }
 
 
