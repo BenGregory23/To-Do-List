@@ -8,38 +8,54 @@ class TacheGateway
         $this->con = $con;
     }
 
-    public function insert($nom, $description){
-        $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 'A Faire', 1)";
-        $this->con->executeQuery($query, array(
-            ':nom'=> array($nom, PDO::PARAM_STR),
-            ':description'=>array($description, PDO::PARAM_STR)));
+    public function findTache($idListe){
+        try{
+            $query = "SELECT * FROM tache WHERE idListe = :idListe";
+            $this->con->executeQuery($query, array(
+                ':idListe'=>array($idListe, PDO::PARAM_INT)
+            ));
+        }
+        catch (PDOException $e){
+            throw new Exception('Problème lors de la récuparation des tâches !<br> Exception : '. $e);
+        }
     }
 
-    public function update($id, $nom, $description, $etat){
-        //code update
-    }
-
-    public function deleteById($id){
-        $query = "DELETE FROM tache WHERE ID=:id";
-        $this->con->executeQuery($query, array(':id'=> array($id, PDO::PARAM_INT)));
-    }
-
-    public function FindByName($nom){
-
-        if($nom <> 0){
-            $query = 'SELECT * FROM tache WHERE nom=:nom';
-            $this->con->executeQuery($query, array(':nom'=> array($nom, PDO::PARAM_STR)));
+    public function ajouterTache( $nom, $description, $idListe){
+        try{
+            $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 'A Faire', 1)";
+            $this->con->executeQuery($query, array(
+                ':nom'=> array($nom, PDO::PARAM_STR),
+                ':description'=>array($description, PDO::PARAM_STR)));
+        }
+        catch(PDOException $e){
+            throw new Exception('Problème lors de l\'insertion d\'une tache. <br> Exception : '.$e);
         }
 
-        var_dump($this->con->errorInfo());
-        var_dump($this->con->errorCode());
-        $results =$this->con->getResults();
+    }
 
-
-        echo 'wow';
-        foreach ($results as $row){
-            $Tab_de_taches[]=new Tache($row['id'], $row['nom'], $row['description'], $row['etat']);
+    //Permet de supprimer toute les tâches ayant l'idListe donné en paramètre
+    public function supprimerTachesIdListe(int $idListe){
+        try{
+            $query = 'DELETE FROM tache WHERE ID = :idListe';
+            $this->con->executeQuery($query, array(
+                ':idListe'=> array($idListe, PDO::PARAM_INT)
+            ));
         }
-        return $Tab_de_taches;
+        catch (PDOException $e){
+            throw new Exception('Problème lors de la suppresion de taches ! <br>Exception : '.$e);
+        }
+    }
+
+    //Permet de supprimer une tâche spécifique
+    public function supprimerTache(int $idTache){
+        try{
+            $query = 'DELETE FROM tache WHERE id = :id';
+            $this->con->executeQuery($query, array(
+               ':id'=>array($idTache, PDO::PARAM_INT)
+            ));
+        }
+        catch(PDOException $e){
+            throw new Exception('Problème de la suppression d\'une tâche ! <br>Exception : ' .$e);
+        }
     }
 }
