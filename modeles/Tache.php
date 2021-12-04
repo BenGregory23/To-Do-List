@@ -7,27 +7,33 @@ class Tache
     public string $description;
     public EnumEtat $etat;
 
-    public function __construct($id, $nom, $description, $etat){
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->description = $description;
-        $this->etat = $etat;
+    public function voirTaches($idListe){
+        global $dsn, $user, $mdp;
+        try{
+            $tacheGw = new TacheGateway(new Connection($dsn, $user,$mdp));
+            $MdltabTache = $tacheGw->findTache($idListe);
+        }
+        catch (Exception $e){
+            echo $e;
+        }
+
+        return $MdltabTache;
+
     }
 
-    public function getId() : int {
-        return $this->id;
+    public function ajouterTache($nom, $description, $idListe){
+        global $dsn, $user, $mdp;
+        $tacheGw = new TacheGateway(new Connection($dsn, $user,$mdp));
+        $tacheGw->ajouterTache($nom, $description, $idListe);
+
     }
 
-    public function getNom() : string{
-        return $this->nom;
-    }
 
-    public function getDescription() : string {
-        return $this->description;
-    }
-
-    public function getEtat() : string {
-        return $this->nom;
+    //Fonction permettant de supprimer une tâche si on connaît son ID
+    public function supprimerTache($id){
+        global $dsn, $user, $mdp;
+        $tacheGw =  new TacheGateway(new Connection($dsn, $user,$mdp));
+        $tacheGw->supprimerTache($id);
     }
 
 

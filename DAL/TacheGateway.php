@@ -14,10 +14,17 @@ class TacheGateway
             $this->con->executeQuery($query, array(
                 ':idListe'=>array($idListe, PDO::PARAM_INT)
             ));
+
+
+
+            $results = $this->con->getResults();
         }
         catch (PDOException $e){
             throw new Exception('Problème lors de la récuparation des tâches !<br> Exception : '. $e);
         }
+            return  $results;
+
+
     }
 
     public function ajouterTache( $nom, $description, $idListe){

@@ -17,9 +17,7 @@ catch(PDOException $e){
 }
 
 
-
-$vues['erreur']= "vues/erreur.php";
-$vues['erreur']= "vues/pageAccueil.php";
-$vues['erreur']= "vues/Connexion.php";
+$vues['accueil']= "../vues/accueil.php";
+$vues['connexion']= "vues/Connexion.php";
 $vues['erreur']= "vues/erreur.php";
 

@@ -7,6 +7,11 @@ require('config/config.php');
 
 require 'DAL/TacheGateway.php';
 require 'DAL/UserGateway.php';
+require 'controleur/ControleurUtilisateur.php';
 
+require 'modeles/Tache.php';
 
 require 'vues/accueil.php';
+
+//instanciation du controleur qui va récupérer les différentes validations de form
+$controler = new ControleurUtilisateur();
