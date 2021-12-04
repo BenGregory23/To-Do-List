@@ -30,6 +30,23 @@ nav button:hover{
 
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form input{
+    margin: 5px;
+}
+
+form #form-submit{
+    padding: 3px 20px;
+    border-radius: 100px;
+    border-color: transparent;
+    max-width: 150px;
+    align-self: center;
+}
 
 .tache{
 
