@@ -7,9 +7,11 @@ require('config/config.php');
 
 require 'DAL/TacheGateway.php';
 require 'DAL/UserGateway.php';
+require 'DAL/ListeGateway.php';
 require 'controleur/ControleurUtilisateur.php';
 
 require 'modeles/Tache.php';
+require 'modeles/Liste.php';
 
 require 'vues/accueil.php';
 

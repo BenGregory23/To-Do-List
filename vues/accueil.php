@@ -41,10 +41,19 @@ try{
             echo '<div class="tache">' . '<input type="checkbox"> ' . '<label>'  . $value["nom"] . " - ETAT :  " . $value["etat"]  .'</div>' . '<br>';
 
         }
+
+
+        $liste = new Liste();
+        $tabListes = $liste->mdlFindAllListes();
+
+        foreach ($tabListes as $row){
+            echo $row["nom"];
+        }
 }
 catch (Exception $e){
     echo $e;
 }
+
 
 
 ?>
