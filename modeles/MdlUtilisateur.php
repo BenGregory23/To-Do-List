@@ -1,6 +1,6 @@
 <?php
 
-class Utilisateur
+class MdlUtilisateur
 {
     public int $id;
     public string $email;

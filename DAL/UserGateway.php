@@ -28,7 +28,7 @@ class UserGateway
             return $result=$this->con->getResults();
 
         }catch (PDOException $e){
-            throw new Exception('Problème lors de recherche d\'un utilisateur !   Exception : '.$e);
+            throw new Exception('Problème lors de recherche d\'un utilisateur ! <br>  Exception : '.$e);
         }
     }
 
@@ -67,7 +67,7 @@ class UserGateway
                 ':password'=>array($password,PDO::PARAM_STR) ));
 
         }catch (PDOException $e){
-            throw new Exception('Problème lors de l\'insertion d\'un utilisateur !   Exception : '.$e);
+            throw new Exception('Problème lors de l\'insertion d\'un utilisateur !  <br> Exception : '.$e);
         }
     }
 }

@@ -35,12 +35,13 @@ class ListeGateway
     }
 
 
-    public function ajouterListes($nom, $description, $pseudo){
+    public function ajouterListe($nom, $description, $pseudo){
         try{
             $query = 'INSERT INTO lites VALUES(:nom, :description, "Visiteur", TRUE )';
             $this->con->executeQuery($query, array(
                ':nom'=>array($nom, PDO::PARAM_STR),
-                ':description'=>array($description, PDO::PARAM_STR)
+                ':description'=>array($description, PDO::PARAM_STR),
+                ':pseudo'=>array($pseudo, PDO::PARAM_STR)
             ));
         }
         catch (Exception $e){
@@ -48,7 +49,7 @@ class ListeGateway
         }
     }
 
-    public function ajouterListesPv($nom, $description, $pseudo){
+    public function ajouterListePv($nom, $description, $pseudo){
         try{
             $query = 'INSERT INTO lites VALUES(:nom, :description, :pseudo, FALSE )';
             $this->con->executeQuery($query, array(

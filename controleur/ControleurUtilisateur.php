@@ -21,7 +21,7 @@ class ControleurUtilisateur
                     $desc = $_REQUEST["description"];
                     $idListe = 1; //POUR LE MOMENT TOUS VAS DANS LA LISTE 1
                     if($nom && $desc){
-                        $tache = new Tache();
+                        $tache = new MdlTache();
                         $tache->ajouterTache($nom, $desc, $idListe);
                     }
                     $this->reinit();

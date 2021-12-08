@@ -10,8 +10,8 @@ require 'DAL/UserGateway.php';
 require 'DAL/ListeGateway.php';
 require 'controleur/ControleurUtilisateur.php';
 
-require 'modeles/Tache.php';
-require 'modeles/Liste.php';
+require 'modeles/MdlTache.php';
+require 'modeles/MdlListe.php';
 
 require 'vues/accueil.php';
 

@@ -34,7 +34,7 @@
 
 
 try{
-        $tache = new Tache();
+        $tache = new MdlTache();
         $tabTaches = $tache->voirTaches(1);
 
         foreach($tabTaches as $value){
@@ -43,7 +43,7 @@ try{
         }
 
 
-        $liste = new Liste();
+        $liste = new MdlListe();
         $tabListes = $liste->mdlFindAllListes();
 
         foreach ($tabListes as $row){
