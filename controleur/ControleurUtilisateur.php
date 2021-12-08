@@ -41,8 +41,6 @@ class ControleurUtilisateur
 
     public function reinit(){
         global $rep, $vues;
-
         require ($vues['accueil']);
-        echo'TEST';
     }
 }
