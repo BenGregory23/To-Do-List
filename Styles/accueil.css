@@ -13,6 +13,8 @@ nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+
 }
 
 
@@ -28,6 +30,22 @@ nav button {
 
 nav button:hover{
 
+}
+
+nav .boutons{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+nav .boutons1{
+    visibility: hidden;
+}
+
+nav .titre{
+
+    display: flex;
+    justify-content: center;
 }
 
 form{
