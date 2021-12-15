@@ -9,8 +9,15 @@
 <nav>
 
     <div class="boutons">
-        <button type="submit"  > Se Connecter</button>
-        <button>S'inscrire</button>
+        <form>
+            <button type="submit"  name="action" value="Connexion" > Se Connecter</button>
+        </form>
+
+
+        <form>
+            <button type="submit" name="action" value="Inscription">S'inscrire</button>
+        </form>
+
     </div>
     <div class="titre">
         <h1>TO DO LISTE</h1>
@@ -22,7 +29,7 @@
 
 
 </nav>
-<h2 align="center">Accueil</h2>
+<h2>Accueil</h2>
 <form method="post" name="ajout-tache-pub" id="formTPub" align="center">
     <label>Nom</label>
     <label>
@@ -38,18 +45,6 @@
 
 
 try{
-    /*
-        $tache = new MdlTache();
-        $tabTaches = $tache->voirTaches(1);
-
-
-        foreach($tabTaches as $value){
-            echo '<div class="tache">' . '<input type="checkbox"> ' . '<label>'  . $value["nom"] . " - ETAT :  " . $value["etat"]  .'</div>' . '<br>';
-
-        }
-    */
-
-
         $liste = new MdlListe();
         $tabListes = $liste->mdlFindAllListes();
 
