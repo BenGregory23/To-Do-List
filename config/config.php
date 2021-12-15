@@ -1,13 +1,13 @@
 <?php
 require 'Connection.php';
 
-$database['login']= "ben";
-$database['password']= "Choco2323";
+$database['login']= "Benchoco";
+$database['password']= "makougoum";
 $database['name']= "todolist";
 
 $dsn = 'mysql:host=localhost;dbname=toDoList';
-$user = "ben";
-$mdp = "Choco2323";
+$user = "Benchoco";
+$mdp = "makougoum";
 
 try{
     $con = new Connection($dsn, $user, $mdp);

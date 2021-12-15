@@ -25,9 +25,13 @@
 <h2 align="center">Accueil</h2>
 <form method="post" name="ajout-tache-pub" id="formTPub" align="center">
     <label>Nom</label>
-    <input name="nom" value="">
+    <label>
+        <input name="nom" value="">
+    </label>
     <label>Description</label>
-    <input name="description" value="">
+    <label>
+        <input name="description" value="">
+    </label>
     <input type="submit"  name="action" value="ajouterTache" id="form-submit" align="center"/>
 </form>
 <?php

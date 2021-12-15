@@ -1,9 +1,9 @@
 <?php
 
 
-class UserGateway
+class AdminGateway
 {
-    private $con;
+    private Connection $con;
 
     public function __construct(Connection $con)
     {
@@ -11,7 +11,7 @@ class UserGateway
     }
 
     /**
-     * Fonction de recherche par ID d'un utilisateur
+     * Fonction de recherche par ID d'un administrateur
      * @param string $pseudo pseudo dont on veux l'ID
      * @param string $password password dont on veux l'ID
      * @throws Exception
@@ -19,7 +19,7 @@ class UserGateway
     public function rechercheID(string $pseudo, string $password): array
     {
         try{
-            $query = 'SELECT ID FROM utilisateurs WHERE (pseudo=:pseudo AND password=:password) ';
+            $query = 'SELECT ID FROM administateur WHERE (pseudo=:pseudo AND password=:password) ';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR),
@@ -28,7 +28,7 @@ class UserGateway
             return $result=$this->con->getResults();
 
         }catch (PDOException $e){
-            throw new Exception('Problème lors de recherche d\'un utilisateur ! <br>  Exception : '.$e);
+            throw new Exception('Problème lors de recherche d\'un administrateur ! <br>  Exception : '.$e);
         }
     }
 
@@ -40,14 +40,14 @@ class UserGateway
     public function getPassword(string $pseudo): array
     {
         try{
-            $query ='SELECT password FROM utilisateurs WHERE pseudo=:pseudo';
+            $query ='SELECT password FROM administrateur WHERE pseudo=:pseudo';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR)));
 
             return $result=$this->con->getResults();
         }catch (PDOException $e){
-            throw new Exception('Problème lors de recherche d\'un utilisateur !\</br>Exception : '.$e);
+            throw new Exception('Problème lors de recherche d\'un administrateur !\</br>Exception : '.$e);
 
         }
     }
@@ -58,34 +58,34 @@ class UserGateway
     public function getLogin(string $pseudo): array
     {
         try{
-            $query ='SELECT pseudo FROM utilisateurs WHERE pseudo=:pseudo';
+            $query ='SELECT pseudo FROM administrateur WHERE pseudo=:pseudo';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR)));
 
             return $result=$this->con->getResults();
         }catch (PDOException $e){
-            throw new Exception('Problème lors de recherche d\'un utilisateur !\</br>Exception : '.$e);
+            throw new Exception('Problème lors de recherche d\'un administrateur !\</br>Exception : '.$e);
 
         }
     }
 
     /**
-     * Fonction d'inscription d'un nouvel utilisateur
+     * Fonction d'inscription d'un nouvel administrateur
      * @param string $pseudo Pseudo de la personne à inscrire
      * @param string $password Password de la personne à inscrire
      * @throws Exception
      */
     public function inscription(string $pseudo, string $password){
         try{
-            $query = 'INSERT INTO utilisateurs VALUES (NULL, :pseudo, :password)';
+            $query = 'INSERT INTO administrateur VALUES (NULL, :pseudo, :password)';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR),
                 ':password'=>array($password,PDO::PARAM_STR) ));
 
         }catch (PDOException $e){
-            throw new Exception('Problème lors de l\'insertion d\'un utilisateur !  <br> Exception : '.$e);
+            throw new Exception('Problème lors de l\'insertion d\'un administrateur !  <br> Exception : '.$e);
         }
     }
 }
