@@ -34,20 +34,27 @@
 
 
 try{
+    /*
         $tache = new MdlTache();
         $tabTaches = $tache->voirTaches(1);
+
 
         foreach($tabTaches as $value){
             echo '<div class="tache">' . '<input type="checkbox"> ' . '<label>'  . $value["nom"] . " - ETAT :  " . $value["etat"]  .'</div>' . '<br>';
 
         }
+    */
 
 
         $liste = new MdlListe();
         $tabListes = $liste->mdlFindAllListes();
 
         foreach ($tabListes as $row){
-            echo $row["nom"];
+            echo '
+            <form method="post" name="ajout-tache-pub" id="formTPub" align="center">
+
+                <input class="liste"type="submit"  name="action" value="voirTacheListe" id="form-submit" align="center"/>
+            </form>';
         }
 }
 catch (Exception $e){
