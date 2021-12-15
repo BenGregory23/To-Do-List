@@ -7,7 +7,9 @@ class MdlUtilisateur
     public string $motDePasse;
 
     public function __construct(string $pseudo, string $mdp){
+
         global $base,$login,$mdpbase;
+
         $pseudo=Nettoyage::nettoyer_string($pseudo);
         $mdp=Nettoyage::nettoyer_string($mdp);
         $con=new Connection($base,$login,$mdpbase);

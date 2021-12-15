@@ -2,32 +2,39 @@
 
 class ListeGateway
 {
-    private $con;
+    private Connection $con;
 
     public function __construct(Connection $con){
         $this->con = $con;
     }
 
-    public function findListe_idListe(int $idListe){
+    /**
+     * @throws Exception
+     */
+    public function findListe_idListe(int $idListe): array
+    {
         try{
             $query = 'SELECT * FROM listes WHERE ID= :id';
             $this->con->executeQuery($query, array(
                 ':idListe'=>array($idListe, PDO::PARAM_STR)
             ));
 
-            return $result = $this->con->getResults();
+            return $this->con->getResults();
         }
         catch(Exception $e){
             throw new Exception('Problème lors de recherche d\'une liste! </br> Exception : '. $e);
         }
     }
 
-    public function findAllListes(){
+    /**
+     * @throws Exception
+     */
+    public function findAllListes(): array
+    {
         try{
             $query = 'SELECT * FROM listes';
             $this->con->executeQuery($query);
-            $results = $this->con->getResults();
-            return $results;
+            return $this->con->getResults();
         }
         catch(Exception $e){
             throw new Exception("Erreur lors de la récupération des listes ! <br>" . $e);
@@ -35,6 +42,9 @@ class ListeGateway
     }
 
 
+    /**
+     * @throws Exception
+     */
     public function ajouterListe($nom, $description, $pseudo){
         try{
             $query = 'INSERT INTO lites VALUES(:nom, :description, "Visiteur", TRUE )';
@@ -49,6 +59,9 @@ class ListeGateway
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function ajouterListePv($nom, $description, $pseudo){
         try{
             $query = 'INSERT INTO lites VALUES(:nom, :description, :pseudo, FALSE )';
@@ -63,6 +76,9 @@ class ListeGateway
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function supprimerListe($id){
         try{
             $query = 'DELETE FROM listes  WHERE ID = :id';

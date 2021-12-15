@@ -11,7 +11,7 @@ class Validation
 
     static function val_form(string $nom, string $description){
 
-        if(!isset($nom)||$nom==""){
+        if(!isset($nom) || $nom==""){
             $dVueErreur[] = "pas de nom";
             $nom = "";
         }

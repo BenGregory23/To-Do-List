@@ -2,12 +2,10 @@
 
 class MdlTache
 {
-    public int $id; //la base de donnée doit avoir un auto increment pour l'id
     public string $nom;
-    public string $description;
-    public EnumEtat $etat;
 
-    public function voirTaches($idListe){
+    public function voirTaches($idListe): array
+    {
         global $dsn, $user, $mdp;
         try{
             $tacheGw = new TacheGateway(new Connection($dsn, $user,$mdp));
@@ -32,7 +30,6 @@ class MdlTache
         }
     }
 
-
     //Fonction permettant de supprimer une tâche si on connaît son ID
     public function supprimerTache($id){
         global $dsn, $user, $mdp;
@@ -43,10 +40,5 @@ class MdlTache
         catch(Exception $e){
             echo $e;
         }
-
     }
-
-
-
-
 }
