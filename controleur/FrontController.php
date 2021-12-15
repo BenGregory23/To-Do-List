@@ -7,11 +7,19 @@ class FrontController
         global $vues;
         session_start();
 
+        if($action == "afficherPageInscription"){
+            require 'vues/Inscription.php';
+        }
+
+
         $listeActionAdmin = array("supprimerTachePb", "supprimerListePb", "supprimerUser");
         if(in_array($action, $listeActionAdmin) == true){
             if(isset($_SESSION) && ($_SESSION['role'] == 'admin')){
                 //connexion()
                 //isAdmin()
+            }
+            else {
+                //Require page connexion
             }
         }
 
@@ -19,10 +27,15 @@ class FrontController
 
         $listeActionUtilisateur = array("ajouterListePv", "ajouterTachePv", "");
         if(in_array($action, $listeActionUtilisateur)){
+            if(isset($_SESSION) && ($_SESSION['role'] == 'user')){
+                //connexion()
 
-            else{
-                require $vues['accueil']; //remplacer accueil par connexion des que possible
+            }
+            else {
+                //Require page connexion
             }
         }
+
+        $listeActionInvite = array("Inscription");
     }
 }
