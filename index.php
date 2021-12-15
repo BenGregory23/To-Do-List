@@ -3,7 +3,9 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-require('config/config.php');
+require_once'config/config.php';
+
+require_once 'config/Autoload.php';
 
 require 'DAL/TacheGateway.php';
 require 'DAL/UserGateway.php';
