@@ -2,33 +2,49 @@
 
 class MdlUtilisateur
 {
-    public int $id;
-    public string $email;
-    public string $motDePasse;
 
-    public function __construct(string $pseudo, string $mdp){
 
-        global $base,$login,$mdpbase;
-
-        $pseudo=Nettoyage::nettoyer_string($pseudo);
-        $mdp=Nettoyage::nettoyer_string($mdp);
-        $con=new Connection($base,$login,$mdpbase);
-        $uG=new UserGateway($con);
-        $mdp2=$uG->getPass($pseudo);
-
+    public function __construct(){
     }
 
-    public function getId() : int{
-        return $this->id;
+    public function connexion($login, $password)
+    {
+        global $con;
+        $userGw = new UserGateway($con);
+        global $vues;
+        Nettoyage::nettoyer_string($login);
+        Nettoyage::nettoyer_string($password);
+
+        $loginDB = $userGw->getLogin($login);
+        $passwordDB = $userGw->getPassword($login);
+
+        /*
+        echo $loginDB[0]['pseudo'];
+        echo $passwordDB[0]['password'];
+        */
+
+        if (($login == $loginDB[0]['pseudo']) && /*password_verify($password, $passwordDB[0]*/ ($password == $passwordDB[0]['password'])) {
+            $_SESSION['role'] = 'user';
+            $_SESSION['login'] = $login;
+
+        }else{
+
+
+            require $vues['erreur'];
+        }
     }
 
-    public function getEmail() : string{
-        return $this->email;
+    public function isUser(){
+        if(isset($_SESSION['login']) && isset($_SESSION['role'])){
+            $role = Nettoyage::nettoyer_string($_SESSION['role']);
+            $login = Nettoyage::nettoyer_string($_SESSION['login']);
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public function getMessage() : string{
-        return $this->motDePasse;
+    public function deconnexion(){
+        session_destroy();
     }
-
-
 }
