@@ -7,35 +7,46 @@ class FrontController
         global $vues;
         session_start();
 
-        if($action == "afficherPageInscription"){
-            require 'vues/Inscription.php';
-        }
+        $listeActionAdmin = array("supprimerTachePb", "supprimerListePb", "supprimerUser", "Accueil");
+        $listeActionUtilisateur = array("ajouterListePv", "ajouterTachePv", "supprimerTachePbPerso", "Accueil");
+        $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil");
 
 
-        $listeActionAdmin = array("supprimerTachePb", "supprimerListePb", "supprimerUser");
+        $action = $_REQUEST['action'];
+        if($action != NULL) $action = Nettoyage::nettoyer_string($action);
+
+
+
+
         if(in_array($action, $listeActionAdmin) == true){
             if(isset($_SESSION) && ($_SESSION['role'] == 'admin')){
                 //connexion()
                 //isAdmin()
             }
             else {
-                //Require page connexion
+                require $vues['connexion'];
             }
         }
 
 
-
-        $listeActionUtilisateur = array("ajouterListePv", "ajouterTachePv", "");
         if(in_array($action, $listeActionUtilisateur)){
+
             if(isset($_SESSION) && ($_SESSION['role'] == 'user')){
-                //connexion()
+                $mdlUser = new MdlUtilisateur();
+                if($mdlUser->isUser()){
+
+                    $ctrlUser = new ControleurUtilisateur($action);
+                }
 
             }
             else {
-                //Require page connexion
+                require $vues['connexion'];
             }
         }
 
-        $listeActionInvite = array("Inscription");
+
+        if(in_array($action, $listeActionInvite) == true){
+                $ctrlInvit = new ControleurInvite($action);
+        }
     }
 }
