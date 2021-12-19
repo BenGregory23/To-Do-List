@@ -18,7 +18,7 @@ nav{
 }
 
 
-nav button {
+nav input {
     padding: 10px;
     border-radius: 100px;
     border: transparent;
@@ -28,7 +28,7 @@ nav button {
 }
 
 
-nav button:hover{
+nav input:hover{
 
 }
 

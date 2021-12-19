@@ -9,38 +9,35 @@
 <nav>
 
     <div class="boutons">
-        <form>
-            <button type="submit"  name="action" value="Connexion" > Se Connecter</button>
-        </form>
+        <?php
+        if(!isset($_SESSION))
+            echo '  
+                    <form method="post">
+                        <input type="submit"  name="action" value="Connexion"/>
+                    </form>';
+        ?>
 
 
-        <form>
-            <button type="submit" name="action" value="Inscription">S'inscrire</button>
+
+        <form method="post">
+            <input type="submit" name="action" value="Inscription"/>
         </form>
 
     </div>
     <div class="titre">
         <h1>TO DO LISTE</h1>
     </div>
-    <div class="boutons1">
-        <button type="submit"  > Se Connecter</button>
-        <button>S'inscrire</button>
+
+    <div>
+        <form method="post">
+            <input type="button" name="action" value="Accueil">
+        </form>
     </div>
 
 
 </nav>
 <h2>Accueil</h2>
-<form method="post" name="ajout-tache-pub" id="formTPub" align="center">
-    <label>Nom</label>
-    <label>
-        <input name="nom" value="">
-    </label>
-    <label>Description</label>
-    <label>
-        <input name="description" value="">
-    </label>
-    <input type="submit"  name="action" value="ajouterTache" id="form-submit" align="center"/>
-</form>
+
 <?php
 
 
@@ -49,12 +46,14 @@ try{
         $tabListes = $liste->mdlFindAllListes();
 
         foreach ($tabListes as $row){
-            echo '
-            <form method="post" name="ajout-tache-pub" id="formTPub" align="center">
-
-                <input class="liste"type="submit"  name="action" value="voirTacheListe" id="form-submit" align="center"/>
+            $nomListe = $row['nom'];
+            echo '<form method="post" name="ajout-tache-pub" id="formTPub" align="center">
+                        <input value= ' . $row['nom'] .  ' class="liste"  type="submit"  id="form-submit">
+                <input type="hidden" name="action" value="voirListePb"/>
             </form>';
         }
+
+
 }
 catch (Exception $e){
     echo $e;
