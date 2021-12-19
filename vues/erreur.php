@@ -5,10 +5,15 @@
 <body>
 <h1 align="center">Erreur</h1>
 <?php
+
 if(isset($dVueErreur)){
+
+
     foreach ($dVueErreur as $value){
-        echo $value;
+        var_dump($value);
+
     }
+
 }
 ?>
 </body>
