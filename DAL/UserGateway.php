@@ -19,7 +19,7 @@ class UserGateway
     public function rechercheID(string $pseudo, string $password): array
     {
         try{
-            $query = 'SELECT ID FROM utilisateurs WHERE (pseudo=:pseudo AND password=:password) ';
+            $query = 'SELECT ID FROM users WHERE (pseudo=:pseudo AND password=:password) ';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR),
@@ -40,7 +40,7 @@ class UserGateway
     public function getPassword(string $pseudo): array
     {
         try{
-            $query ='SELECT password FROM utilisateurs WHERE pseudo=:pseudo';
+            $query ='SELECT password FROM users WHERE pseudo=:pseudo';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR)));
@@ -58,12 +58,13 @@ class UserGateway
     public function getLogin(string $pseudo): array
     {
         try{
-            $query ='SELECT pseudo FROM utilisateurs WHERE pseudo=:pseudo';
+            $query ='SELECT pseudo FROM users WHERE pseudo=:pseudo';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR)));
 
             return $result=$this->con->getResults();
+
         }catch (PDOException $e){
             throw new Exception('Problème lors de recherche d\'un utilisateur !\</br>Exception : '.$e);
 
@@ -78,7 +79,7 @@ class UserGateway
      */
     public function inscription(string $pseudo, string $password){
         try{
-            $query = 'INSERT INTO utilisateurs VALUES (NULL, :pseudo, :password)';
+            $query = 'INSERT INTO users VALUES (NULL, :pseudo, :password)';
 
             $resBool=$this->con->executeQuery($query,array(
                 ':pseudo'=>array($pseudo,PDO::PARAM_STR),
