@@ -4,16 +4,23 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 require'config/config.php';
+require_once 'config/Nettoyage.php';
 
 require 'DAL/TacheGateway.php';
 require 'DAL/UserGateway.php';
 require 'DAL/ListeGateway.php';
+
 require 'controleur/ControleurUtilisateur.php';
+require_once 'controleur/ControleurInvite.php';
+require 'controleur/FrontController.php';
 
 require 'modeles/MdlTache.php';
 require 'modeles/MdlListe.php';
+require 'modeles/MdlUtilisateur.php';
+
+require_once 'metier/Tache.php';
 
 require 'vues/accueil.php';
 
-//instanciation du controleur qui va récupérer les différentes validations de form
-$controler = new ControleurUtilisateur();
+
+$frontController = new FrontController();
