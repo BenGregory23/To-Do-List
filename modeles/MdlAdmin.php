@@ -12,23 +12,21 @@ class MdlAdmin
     /**
      * @throws Exception
      */
-    public static function connexion(string $pseudo, string $password) {
-
-        global $dsn, $user, $mdp, $vues;
-        $con = new Connection($dsn,$user,$mdp);
+    public static function connexion(string $login, string $password) {
+        global $vues, $con;
 
         $uG = new UserGateway($con);
 
-        $pseudo=Nettoyage::nettoyer_string($pseudo);
-        $password=Nettoyage::nettoyer_string($password);
+        $login = Nettoyage::nettoyer_string($login);
+        $password = Nettoyage::nettoyer_string($password);
 
 
-        $loginDB = $uG->getLogin($pseudo);
-        $passwordDB = $uG->getPassword($pseudo);
+        $loginDB = $uG->getLogin($login);
+        $passwordDB = $uG->getPassword($login);
 
-        if (($pseudo == $loginDB) && password_verify($password, $passwordDB[0])){
+        if (($login == $loginDB) && password_verify($password, $passwordDB[0])){
             $_SESSION['role']='Admin';
-            $_SESSION['pseudo']=$pseudo;
+            $_SESSION['login']=$login;
         }
         else require $vues['erreur'];
     }
