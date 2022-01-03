@@ -3,11 +3,11 @@
 class Tache
 {
 
-    private string $nomTache;
-    private string $descriptionTache;
-    private int $idListe;
-    private string $etat;
-    private string $pseudoUser;
+    private $nomTache;
+    private $descriptionTache;
+    private $idListe;
+    private $etat;
+    private $pseudoUser;
 
     function __construct(string $nomTache, string $descriptionTache, int $idListe, string $pseudoUser) {
         $this->nomTache = $nomTache;

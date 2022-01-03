@@ -6,8 +6,8 @@ $database['password']= "choco2323";
 $database['name']= "todolist";
 
 $dsn = 'mysql:host=localhost;dbname=toDoList';
-$user = "ben";
-$mdp = "Choco2323";
+$user = "ZartaX0O3";
+$mdp = "Panda567&";
 
 //ben Choco2323
 

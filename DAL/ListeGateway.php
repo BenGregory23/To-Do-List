@@ -2,9 +2,9 @@
 
 class ListeGateway
 {
-    private Connection $con;
+    private $con;
 
-    public function __construct(Connection $con){
+    public function __construct($con){
         $this->con = $con;
     }
 

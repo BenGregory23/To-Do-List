@@ -2,7 +2,7 @@
 
 class MdlTache
 {
-    public string $nom;
+    public $nom;
 
     public function voirTaches($idListe): array
     {

@@ -8,7 +8,11 @@ class TacheGateway
         $this->con = $con;
     }
 
-    public function findTache($idListe){
+    /**
+     * @throws Exception
+     */
+    public function findTache($idListe): array
+    {
         try{
             $query = "SELECT * FROM tache WHERE idListe = :idListe";
             $this->con->executeQuery($query, array(
@@ -41,6 +45,10 @@ class TacheGateway
     }
 
     //Permet de supprimer toute les tâches ayant l'idListe donné en paramètre
+
+    /**
+     * @throws Exception
+     */
     public function supprimerTachesIdListe(int $idListe){
         try{
             $query = 'DELETE FROM tache WHERE ID = :idListe';
@@ -54,6 +62,10 @@ class TacheGateway
     }
 
     //Permet de supprimer une tâche spécifique
+
+    /**
+     * @throws Exception
+     */
     public function supprimerTache(int $idTache){
         try{
             $query = 'DELETE FROM tache WHERE id = :id';

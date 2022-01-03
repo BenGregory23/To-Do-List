@@ -79,11 +79,17 @@ class UserGateway
      */
     public function inscription(string $pseudo, string $password){
         try{
-            $query = 'INSERT INTO users VALUES (NULL, :pseudo, :password)';
+            $this->getLogin($pseudo);
+            if($pseudo){
+                $_REQUEST['login'] = "Login déjà existant";
+            }
+            else{
+                $query = 'INSERT INTO users VALUES (NULL, :pseudo, :password)';
 
-            $resBool=$this->con->executeQuery($query,array(
-                ':pseudo'=>array($pseudo,PDO::PARAM_STR),
-                ':password'=>array($password,PDO::PARAM_STR) ));
+                $resBool=$this->con->executeQuery($query,array(
+                    ':pseudo'=>array($pseudo,PDO::PARAM_STR),
+                    ':password'=>array($password,PDO::PARAM_STR) ));
+            }
 
         }catch (PDOException $e){
             throw new Exception('Problème lors de l\'insertion d\'un utilisateur !  <br> Exception : '.$e);

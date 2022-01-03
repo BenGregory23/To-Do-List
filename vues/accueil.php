@@ -1,4 +1,4 @@
-<html>
+<html lang="fr">
 <head>
     <title>Accueil</title>
     <link rel="stylesheet" href="../Styles/accueil.css">

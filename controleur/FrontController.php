@@ -15,9 +15,6 @@ class FrontController
         $action = $_REQUEST['action'];
         if($action != NULL) $action = Nettoyage::nettoyer_string($action);
 
-
-
-
         if(in_array($action, $listeActionAdmin) == true){
             if(isset($_SESSION) && ($_SESSION['role'] == 'admin')){
                 //connexion()
@@ -28,8 +25,7 @@ class FrontController
             }
         }
 
-
-        if(in_array($action, $listeActionUtilisateur)){
+        else if(in_array($action, $listeActionUtilisateur)){
 
             if(isset($_SESSION) && ($_SESSION['role'] == 'user')){
                 $mdlUser = new MdlUtilisateur();
@@ -45,7 +41,7 @@ class FrontController
         }
 
 
-        if(in_array($action, $listeActionInvite) == true){
+        else {
                 $ctrlInvit = new ControleurInvite($action);
         }
     }

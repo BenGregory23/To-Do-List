@@ -1,118 +1,95 @@
 <?php
 
-
 class Utilisateur
 {
-    private string $pseudo;
-    private mixed $role;
-    private array $listesPriv;
-    private array$listesPub;
+    public $email;
+    public $etat;
+    public $listePublique;
+    public $listePrive;
+    public $listeLike;
 
     public function __construct()
     {
         $arguments=func_get_args();
-        $nbArgs=func_num_args();
-        if ($nbArgs==0) call_user_func_array(array($this,"__construct0"),$arguments);
-        if ($nbArgs==2) call_user_func_array(array($this,"__construct1"),$arguments);
-        if ($nbArgs==3) call_user_func_array(array($this,"__construct2"),$arguments);
-        if ($nbArgs==4) call_user_func_array(array($this,"__construct3"),$arguments);}
+        $nbArguments=func_num_args();
+        if ($nbArguments==0) call_user_func_array(array($this,"__construct0"),$arguments);
+        if ($nbArguments==2) call_user_func_array(array($this,"__construct1"),$arguments);
+        if ($nbArguments==3) call_user_func_array(array($this,"__construct2"),$arguments);
+        if ($nbArguments==4) call_user_func_array(array($this,"__construct3"),$arguments);
+        if ($nbArguments==5) call_user_func_array(array($this,"__construct4"),$arguments);
+
+    }
+
+    private static function getUserList()
+    {
+    }
 
     public function __construct0(){
-        $this->pseudo = "";
+        $this->email = "";
+    }
+
+    public function __construct1(string $email, string $etat){
+        $this->email = "";
+        $this->etat = $etat;
+    }
+
+    public function __construct2(string $email, string $etat, array $listePrive){
+        $this->email = "";
+        $this->etat = $etat;
+        $this->listePrive = $listePrive;
+    }
+
+    public function __construct3(string $email, string $etat, array $listePrive, array $listePublique){
+        $this->email = "";
+        $this->etat = $etat;
+        $this->listePrive = $listePrive;
+        $this->listePublique = $listePublique;
+    }
+
+    public function __construct5(string $email, string $etat, array $listePrive, array $listePublique, $listeLike){
+        $this->email = "";
+        $this->etat = $etat;
+        $this->listePrive = $listePrive;
+        $this->listePublique = $listePublique;
+        $this->listeLike = $listeLike;
     }
 
 
-    public function __construct1(string $pseudo, string $role)
-    {
-        $this->pseudo=$pseudo;
-        $this->role=$role;
+
+    public static function connexion(string $pseudo, string $mdp){
+
+        global $base,$login,$passwordUser;
+
+        $pseudo=Nettoyage::nettoyer_string($pseudo);
+        $passwordUser=Nettoyage::nettoyer_string($mdp);
+
+        $con=new Connection($base,$login,$passwordUser);
+        $passwordVerification = new UserGateway($con);
+
+        if (password_verify($passwordUser,$passwordVerification[0]["mdp"])){
+            $_SESSION['role']='userCo';
+            $_SESSION['pseudo']=$pseudo;
+            //$_SESSION['id']=$id;
+            return self::getUserList();
+        }
+        else return null;
+
+
     }
 
-    public function __construct2(string $pseudo, string $role, array $listesPriv)
-    {
-        $this->pseudo=$pseudo;
-        $this->role=$role;
-        $this->listesPriv=$listesPriv;
+    public function getEmail() : string{
+        return $this->email;
     }
 
-    public function __construct3(string $pseudo, string $role, array $listesPriv, array $listesPub)
+    public function isUserConncected() : Utilisateur
     {
-        $this->pseudo=$pseudo;
-        $this->role=$role;
-        $this->listesPriv=$listesPriv;
-        $this->listesPub=$listesPub;
-    }
+        if (isset($_SESSION['pseudo']) && isset($_SESSION['role'])){
+            $pseudo=Nettoyage::nettoyer_string($_SESSION['pseudo']);
+            $role=Nettoyage::nettoyer_string($_SESSION['role']);
+            if ($pseudo == "" || $role == "") return new Utilisateur();
+            return new Utilisateur($pseudo,$role);
+        }
+        return new Utilisateur();
 
-
-    /**
-     * @return string
-     */
-    public function getPseudo(): string
-    {
-        return $this->pseudo;
-    }
-
-    /**
-     * @return array
-     */
-    public function getListesPriv(): array
-    {
-        return $this->listesPriv;
-    }
-
-    /**
-     * @return array
-     */
-    public function getListesPub(): array
-    {
-        return $this->listesPub;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRole(): mixed
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param int $idUser
-     */
-    public function setIdUser(int $idUser): void
-    {
-        $this->idUser = $idUser;
-    }
-
-    /**
-     * @param string $pseudo
-     */
-    public function setPseudo(string $pseudo): void
-    {
-        $this->pseudo = $pseudo;
-    }
-
-    /**
-     * @param array $listesPriv
-     */
-    public function setListesPriv(array $listesPriv): void
-    {
-        $this->listesPriv = $listesPriv;
-    }
-
-    /**
-     * @param array $listesPub
-     */
-    public function setListesPub(array $listesPub): void
-    {
-        $this->listesPub = $listesPub;
-    }
-
-    /**
-     * @param mixed $role
-     */
-    public function setRole($role): void
-    {
-        $this->role = $role;
     }
 }

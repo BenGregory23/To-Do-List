@@ -7,9 +7,7 @@ class ControleurInvite
         global $rep, $vues;
         $dVueErreur = array();
 
-        $listeAction = array('ajouterTachePb', 'ajouterListe', 'voirListePb');
         try {
-            $action = $_REQUEST['action'];
             switch ($action) {
                 case 'Accueil':
                 case NULL :
@@ -62,6 +60,7 @@ class ControleurInvite
     public function inscription(){
         global $rep, $vues, $con, $dVueErreur;
         try{
+
             $userGw = new UserGateway($con);
             $login = $_REQUEST["login"];
             $mdp = $_REQUEST["mdp"];
