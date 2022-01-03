@@ -11,7 +11,6 @@ class ControleurInvite
             switch ($action) {
                 case 'Accueil':
                 case NULL :
-                    echo 1;
                     $this->accueil();
                     break;
                 case 'Inscription' :

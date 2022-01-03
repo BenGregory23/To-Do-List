@@ -58,11 +58,11 @@
                 <form class="form d-flex align-items-center mb-0" method="post" >
                     <div class="col">
                         <label class="sr-only" for="inputNomListe">List title</label>
-                        <input id="inputNomListe" name="txtNomListe" class="form-control" type="text" placeholder="Enter list title" maxlength="30" required >
+                        <input id="inputNomListe" name="nom" class="form-control" type="text" placeholder="Enter list title" maxlength="30" required >
                     </div>
                     <div class="col">
                         <label class="sr-only" for="inputDescriptionListe">List description</label>
-                        <textarea id="inputDescriptionListe" name="txtDescriptionListe" class="form-control" placeholder="Enter list description" maxlength="2000" style="max-height: 200px; min-height: 38px"></textarea>
+                        <textarea id="inputDescriptionListe" name="description" class="form-control" placeholder="Enter list description" maxlength="2000" style="max-height: 200px; min-height: 38px"></textarea>
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-block btn-dark">Add</button>
