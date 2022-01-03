@@ -19,8 +19,6 @@ require 'modeles/MdlListe.php';
 require 'modeles/MdlUtilisateur.php';
 
 require_once 'metier/Tache.php';
-
-require 'vues/accueil.php';
-
+require_once 'metier/Liste.php';
 
 $frontController = new FrontController();

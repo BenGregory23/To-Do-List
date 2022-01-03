@@ -24,7 +24,6 @@ class Autoload
         require 'metier/Utilisateur.php';
 
         require 'vues/accueil.php';
-
     }
 }
 

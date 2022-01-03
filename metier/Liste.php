@@ -1,10 +1,10 @@
 <?php
 
 class Liste {
-    private string $nomListe;
-    private string $descriptionListe;
-    private string $pseudoUser;
-    private bool $isPublic=false;
+    private $nomListe;
+    private $descriptionListe;
+    private $pseudoUser;
+    private $isPublic=false;
 
 
     function __construct(string $nomListe, string $descriptionListe,bool $isPublic,string $pseudoUser) {

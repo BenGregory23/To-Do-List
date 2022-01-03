@@ -34,7 +34,8 @@ class MdlUtilisateur
         }
     }
 
-    public function isUser(){
+    public function isUser(): bool
+    {
         if(isset($_SESSION['login']) && isset($_SESSION['role'])){
             $role = Nettoyage::nettoyer_string($_SESSION['role']);
             $login = Nettoyage::nettoyer_string($_SESSION['login']);

@@ -11,7 +11,8 @@ class ControleurInvite
             switch ($action) {
                 case 'Accueil':
                 case NULL :
-                    $this->reinit();
+                    echo 1;
+                    $this->accueil();
                     break;
                 case 'Inscription' :
                     require $vues['inscription'];
@@ -28,7 +29,9 @@ class ControleurInvite
                 case 'ajouterTachePb' :
                     $this->ajouterTachePb();
                     break;
-
+                case 'ajouterListePb' :
+                    $this->ajouterListePb();
+                    break;
                 case 'voirListePb':
                     $this->voirTachesListe();
                     break;
@@ -36,11 +39,17 @@ class ControleurInvite
                     break;
                 default :
                     echo 'DEFAULT';
+                    require ($rep.$vues['accueil']);
+                    break;
+
             }
         }
-        catch(Exception $e){
-            echo $e;
+        catch (Exception $e)
+        {
+            $dVueErreur[] ="Error not expected";
+            require ($rep.$vues['accueil']);
         }
+        exit(0);
     }
 
     public function connexion(){
@@ -56,6 +65,22 @@ class ControleurInvite
         }
 
     }
+
+    /**
+     * @throws Exception
+     */
+    public function accueil(){
+        global $rep,$vues;
+
+        $mdlListe = new MdlListe();
+        $tabListes = $mdlListe->mdlFindAllListes();
+
+        require ($rep.$vues['accueil']);
+        exit(0);
+
+    }
+
+
 
     public function inscription(){
         global $rep, $vues, $con, $dVueErreur;
@@ -100,6 +125,25 @@ class ControleurInvite
         global $rep, $vues;
         echo 'BITE';
         require $vues['accueil'];
+    }
+
+    private function ajouterListePb()
+    {
+        global $dVueErreur;
+        try{
+            $nom = $_REQUEST["nom"];
+            $desc = $_REQUEST["description"];
+            //$idListe = $_REQUEST["idListe"];
+            $idListe = 1;
+            if($nom && $desc) {
+                $liste = new MdlListe();
+                $liste->mdlAjouterListe($nom, $desc);
+            }
+        }
+        catch (Exception $e){
+            $erreur = "Erreur lors de l'ajout d'une tache publique" . $e;
+            $dVueErreur[] = $erreur;
+        }
     }
 
 }

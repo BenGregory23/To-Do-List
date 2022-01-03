@@ -47,7 +47,7 @@ class ListeGateway
      */
     public function ajouterListe($nom, $description, $pseudo){
         try{
-            $query = 'INSERT INTO lites VALUES(:nom, :description, "Visiteur", TRUE )';
+            $query = 'INSERT INTO listes VALUES(NULL,:nom, :description, :pseudo, TRUE)';
             $this->con->executeQuery($query, array(
                ':nom'=>array($nom, PDO::PARAM_STR),
                 ':description'=>array($description, PDO::PARAM_STR),
@@ -90,5 +90,42 @@ class ListeGateway
             throw new Exception("Erreur lors de la suppression d'une liste <br> " . $e );
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function recupere_liste_par_bloc(int $debut, int $nbListes){
+
+        try {
+            $query = 'SELECT * FROM listes WHERE isPublic=TRUE ORDER BY ID ASC LIMIT :debut,:nbListes';
+
+            $this->con->executeQuery($query,array(
+                ':debut'=>array($debut,PDO::PARAM_INT),
+                ':nbListes'=>array($nbListes,PDO::PARAM_INT)
+            ));
+
+            return $this->con->getResults();
+        }catch (PDOException $e){
+            throw new Exception('Problème lors de la récupération de plusieurs listes !</br>Exception : '.$e);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function nbListesPublique(){
+
+        try {
+            $query = 'SELECT COUNT(*) FROM listes WHERE isPublic=true';
+
+            $this->con->executeQuery($query,array());
+
+            return $this->con->getResults();
+        }catch (PDOException $e){
+            throw new Exception('Problème lors de la récupération de plusieurs listes !</br>Exception : '.$e);
+        }
+    }
+
+
 
 }

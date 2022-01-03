@@ -1,69 +1,100 @@
-<html lang="fr">
+<html lang="en">
 <head>
-    <title>Accueil</title>
-    <link rel="stylesheet" href="../Styles/accueil.css">
+    <title>Acceuil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(window).on('load',function(){
+            $('#modalErreur').modal('show');
+        });
+    </script>
 </head>
-<body>
-
-
-<nav>
-
-    <div class="boutons">
-        <?php
-        if(!isset($_SESSION))
-            echo '  
-                    <form method="post">
-                        <input type="submit"  name="action" value="Connexion"/>
-                    </form>';
-        ?>
-
-
-
-        <form method="post">
-            <input type="submit" name="action" value="Inscription"/>
-        </form>
-
+<body style="background-image: url("")" >
+<nav class="p-1 navbar-dark bg-dark sticky-top">
+    <div class="d-flex justify-content-between align-items-center">
+        <a class="navbar-brand" href="/">To do list</a>
+        <h5 class=" text-white titre">Home</h5>
+        <div class="d-flex navbarGauche">
+            <form class="formConnection" method="get">
+                <input type="image" width="30" height="30" value="Se connecter" alt=""/>
+                <input type="hidden" name="action" value="connection"/>
+            </form>
+        </div>
     </div>
-    <div class="titre">
-        <h1>TO DO LISTE</h1>
-    </div>
-
-    <div>
-        <form method="post">
-            <input type="button" name="action" value="Accueil">
-        </form>
-    </div>
-
-
 </nav>
-<h2>Accueil</h2>
 
-<?php
-
-
-try{
-        $liste = new MdlListe();
-        $tabListes = $liste->mdlFindAllListes();
-
-        foreach ($tabListes as $row){
-            $nomListe = $row['nom'];
-            echo '<form method="post" name="ajout-tache-pub" id="formTPub" align="center">
-                        <input value= ' . $row['nom'] .  ' class="liste"  type="submit"  id="form-submit">
-                <input type="hidden" name="action" value="voirListePb"/>
-            </form>';
-        }
-
-
-}
-catch (Exception $e){
-    echo $e;
-}
-
-
-
-?>
+<?php if (isset($tabInfo) && count($tabInfo)>0){?>
+    <div class="modal fade" id="modalErreur" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header <?php echo ($tabInfo["type"]=="erreur") ?  "alert-danger" : "alert-success" ; ?> " style="border-bottom: 1px solid #aaa8a8">
+                    <?php echo ($tabInfo["type"]=="erreur") ?  "<h5 class=\"modal-title\">Error</h5>" : "<h5 class=\"modal-title\">Information</h5>" ; ?>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body <?php echo ($tabInfo["type"]=="erreur") ?  "alert-danger" : "alert-success" ; ?>">
+                    <?php
+                    echo "<p>".$tabInfo["message"]."</p>";
+                    ?>
+                </div>
+                <div class="modal-footer <?php echo ($tabInfo["type"]=="erreur") ?  "alert-danger" : "alert-success" ; ?>" style="border-top: 1px solid #aaa8a8">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 
 
-<!--faire en sorte de valider le formulaire et envoyer l'action au controleur-->
+<div class="w-75 d-flex justify-content-center flex-wrap mx-auto mt-3">
+    <div class="w-100 d-flex justify-content-around align-items-center mb-4">
+        <div class="accordion d-flex align-items-center " id="ajouterListe">
+            <button type="button" class="btn btn-outline-success mr-1  text-nowrap " data-toggle="collapse" data-target="#formAjouterListe" aria-expanded="false" aria-controls="formAjouterListe" >+ Add a new list</button>
+            <div id="formAjouterListe" class="collapse ml-1 mr-2 pl-2 pr-2 border-right border-left" data-parent="#ajouterListe">
+                <form class="form d-flex align-items-center mb-0" method="post" >
+                    <div class="col">
+                        <label class="sr-only" for="inputNomListe">List title</label>
+                        <input id="inputNomListe" name="txtNomListe" class="form-control" type="text" placeholder="Enter list title" maxlength="30" required >
+                    </div>
+                    <div class="col">
+                        <label class="sr-only" for="inputDescriptionListe">List description</label>
+                        <textarea id="inputDescriptionListe" name="txtDescriptionListe" class="form-control" placeholder="Enter list description" maxlength="2000" style="max-height: 200px; min-height: 38px"></textarea>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-block btn-dark">Add</button>
+                    </div>
+                    <input type="hidden" name="action" value="ajouterListePb">
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <?php if (isset($tabListes)){ ?>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">List title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Creator</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($tabListes as $liste){ ?>
+                <tr>
+                    <td><?php echo $liste["nom"]?> </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    <?php }else{ ?>
+        <div>No lists available</div>
+    <?php } ?>
+</div>
 </body>
 </html>

@@ -9,40 +9,35 @@ class FrontController
 
         $listeActionAdmin = array("supprimerTachePb", "supprimerListePb", "supprimerUser", "Accueil");
         $listeActionUtilisateur = array("ajouterListePv", "ajouterTachePv", "supprimerTachePbPerso", "Accueil");
-        $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil");
+        $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "ajouterListePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil");
 
+        try{
+            $action = $_REQUEST['action'];
 
-        $action = $_REQUEST['action'];
-        if($action != NULL) $action = Nettoyage::nettoyer_string($action);
+            if($action != NULL) $action = Nettoyage::nettoyer_string($action);
 
-        if(in_array($action, $listeActionAdmin) == true){
-            if(isset($_SESSION) && ($_SESSION['role'] == 'admin')){
-                //connexion()
-                //isAdmin()
-            }
-            else {
-                require $vues['connexion'];
-            }
-        }
+            if(in_array($action, $listeActionUtilisateur) != NULL){
 
-        else if(in_array($action, $listeActionUtilisateur)){
+                if(isset($_SESSION) && ($_SESSION['role'] == 'user')){
+                    $mdlUser = new MdlUtilisateur();
+                    if($mdlUser->isUser()){
 
-            if(isset($_SESSION) && ($_SESSION['role'] == 'user')){
-                $mdlUser = new MdlUtilisateur();
-                if($mdlUser->isUser()){
+                        $ctrlUser = new ControleurUtilisateur($action);
+                    }
 
-                    $ctrlUser = new ControleurUtilisateur($action);
                 }
-
+                else {
+                    require $vues['connexion'];
+                }
             }
+
+
             else {
-                require $vues['connexion'];
+                new ControleurInvite($action);
             }
-        }
-
-
-        else {
-                $ctrlInvit = new ControleurInvite($action);
+        } catch (Exception $e){
+            $dVueErreur[]="Erreur inattendue";
+            require ($vues['accueil']);
         }
     }
 }
