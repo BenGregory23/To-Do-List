@@ -35,7 +35,7 @@ class ControleurUtilisateur
                     break;
 
                 default :
-                    echo 'DEFAULT';
+                    echo 'DEFAULT USER';
             }
         }
         catch(Exception $e){

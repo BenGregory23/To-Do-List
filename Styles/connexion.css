@@ -1,0 +1,34 @@
+.div-connexion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#btn-home{
+    padding: 10px;
+    width: 120px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #28a745;
+    color: #28a745;
+    transition: all 0.2s;
+    font-size: larger;
+}
+
+#btn-home:hover{
+    background-color: #28a745;
+    color: white;
+}
+
+.div-connexion form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.div-connexion input[type="submit"]{
+    max-width: 200px;
+    margin: 10px;
+    align-self: center;
+}
+

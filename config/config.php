@@ -1,13 +1,9 @@
 <?php
 require 'Connection.php';
 
-$database['login']= "ben";
-$database['password']= "choco2323";
-$database['name']= "todolist";
-
 $dsn = 'mysql:host=localhost;dbname=toDoList';
-$user = "ZartaX0O3";
-$mdp = "Panda567&";
+$user = "ben";
+$mdp = "choco2323";
 $idLogin['login'] = 0;
 $tabListes = NULL;
 

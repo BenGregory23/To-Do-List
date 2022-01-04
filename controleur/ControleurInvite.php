@@ -16,13 +16,13 @@ class ControleurInvite
                     $this->accueil();
                     break;
                 case 'Inscription' :
-                    require $vues['inscription'];
+                    $this->showInscription();
                     break;
                 case "validerInscription" :
                     $this->inscription();
                     break;
                 case 'Connexion' :
-                    require $vues['connexion'];
+                    $this->showConnexion();
                     break;
                 case 'validerConnexion' :
                     $this->connexion();
@@ -78,7 +78,16 @@ class ControleurInvite
         require ($rep.$vues['accueil']);
     }
 
+    public function showInscription(){
+        global $vues;
 
+        try{
+            require $vues["inscription"];
+        }catch (Exception $e){
+            $erreur = "Erreur lors de l'affichage du formulaire d'inscription" . $e;
+            $dVueErreur[] = $erreur;
+        }
+    }
 
     public function inscription(){
         global $rep, $vues, $con, $dVueErreur;
@@ -93,6 +102,17 @@ class ControleurInvite
             $dVueErreur[] = $erreur;
         }
 
+    }
+
+    public function showConnexion(){
+        global $vues;
+
+        try{
+            require $vues['connexion'];
+        }catch (Exception $e){
+            $erreur = "Erreur lors de l'affichage du formulaire de connexion" . $e;
+            $dVueErreur[] = $erreur;
+        }
     }
 
     public function ajouterTachePb(){
