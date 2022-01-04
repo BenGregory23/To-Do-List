@@ -16,16 +16,15 @@
     <label>
         <input name="description" value="">
     </label>
-    <input type="submit"  name="action" value="ajouterTachePb" id="form-submit"/>
+    <input type="submit"  name="action" value="?action=ajouterTachePb&idListe=<?php global $idListe; echo $idListe; ?>"" id="form-submit"/>
 </form>
 <?php
 
 
 try{
+    global $idListe;
     $mdlTache = new MdlTache();
-
-    $tabTaches = $mdlTache->voirTaches(1);
-
+    $tabTaches = $mdlTache->voirTaches($idListe);
 
     foreach ($tabTaches as $row){
         echo $row['nom'] . '<br>';

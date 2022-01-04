@@ -8,7 +8,6 @@ class MdlListe
     public function mdlFindAllListes(): array
     {
         global $dsn, $user, $mdp;
-        echo 3;
         $listeGw = new ListeGateway(new Connection($dsn, $user, $mdp));
         return $listeGw->findAllListes();
     }
@@ -17,7 +16,6 @@ class MdlListe
     public function mdlAjouterListe($nom, $description){
         global $dsn, $user, $mdp;
         try{
-            echo 1;
             $listeGw = new ListeGateway(new Connection($dsn, $user,$mdp));
             $listeGw->ajouterListe($nom, $description, "Public");
         }

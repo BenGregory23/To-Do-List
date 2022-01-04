@@ -8,8 +8,8 @@ $database['name']= "todolist";
 $dsn = 'mysql:host=localhost;dbname=toDoList';
 $user = "ZartaX0O3";
 $mdp = "Panda567&";
-
-//ben Choco2323
+$idLogin['login'] = 0;
+$tabListes = NULL;
 
 try{
     $con = new Connection($dsn, $user, $mdp);

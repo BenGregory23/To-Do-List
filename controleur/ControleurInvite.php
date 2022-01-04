@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 class ControleurInvite
 {
     public function __construct($action){
@@ -37,7 +39,6 @@ class ControleurInvite
                 case 'ajouterListe' :
                     break;
                 default :
-                    echo 'DEFAULT';
                     require ($rep.$vues['accueil']);
                     break;
 
@@ -75,8 +76,6 @@ class ControleurInvite
         $tabListes = $mdlListe->mdlFindAllListes();
 
         require ($rep.$vues['accueil']);
-        exit(0);
-
     }
 
 
@@ -101,11 +100,11 @@ class ControleurInvite
         try{
             $nom = $_REQUEST["nom"];
             $desc = $_REQUEST["description"];
-            //$idListe = $_REQUEST["idListe"];
-            $idListe = 1;
+            $idListe = $_REQUEST["idListe"];
             if($nom && $desc) {
                 $tache = new MdlTache();
                 $tache->ajouterTache($nom, $desc, $idListe);
+                echo 2;
             }
         }
         catch (Exception $e){
@@ -116,14 +115,21 @@ class ControleurInvite
     }
 
     public function voirTachesListe(){
-        global $vues;
-        require $vues['tachesListe'];
+        global $vues, $idListe;
+
+        $idListe = $_REQUEST['idListe'];
+
+        require $vues["tachesListe"];
     }
+
+    function voirListe(array $tabInfo, int ...$idListe){
+
+    }
+
 
     public function reinit(){
         global $rep, $vues;
-        echo 'BITE';
-        require $vues['accueil'];
+        require_once $vues['accueil'];
     }
 
     private function ajouterListePb()
@@ -132,8 +138,6 @@ class ControleurInvite
         try{
             $nom = $_REQUEST["nom"];
             $desc = $_REQUEST["description"];
-            //$idListe = $_REQUEST["idListe"];
-            $idListe = 1;
             if($nom && $desc) {
                 $liste = new MdlListe();
                 $liste->mdlAjouterListe($nom, $desc);
@@ -144,5 +148,4 @@ class ControleurInvite
             $dVueErreur[] = $erreur;
         }
     }
-
 }

@@ -31,12 +31,16 @@ class TacheGateway
 
     }
 
-    public function ajouterTache( $nom, $description, $idListe){
+    /**
+     * @throws Exception
+     */
+    public function ajouterTache($nom, $description, $idListe){
         try{
-            $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 'A Faire', 1)";
+            $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 'A Faire', :idListe)";
             $this->con->executeQuery($query, array(
                 ':nom'=> array($nom, PDO::PARAM_STR),
-                ':description'=>array($description, PDO::PARAM_STR)));
+                ':description'=>array($description, PDO::PARAM_STR),
+                ':idListe'=>array($idListe, PDO::PARAM_STR)));
         }
         catch(PDOException $e){
             throw new Exception('Problème lors de l\'insertion d\'une tache. <br> Exception : '.$e);

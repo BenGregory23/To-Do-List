@@ -65,7 +65,7 @@
                         <textarea id="inputDescriptionListe" name="description" class="form-control" placeholder="Enter list description" maxlength="2000" style="max-height: 200px; min-height: 38px"></textarea>
                     </div>
                     <div class="col">
-                        <button type="submit" class="btn btn-block btn-dark">Add</button>
+                        <button type="submit" href="/" class="btn btn-block btn-dark">Add</button>
                     </div>
                     <input type="hidden" name="action" value="ajouterListePb">
 
@@ -81,13 +81,15 @@
             <tr>
                 <th scope="col">List title</th>
                 <th scope="col">Type</th>
-                <th scope="col">Creator</th>
+                <th scope="col">isPublic</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($tabListes as $liste){ ?>
                 <tr>
-                    <td><?php echo $liste["nom"]?> </td>
+                    <td><a type="button" href="?action=voirListePb&idListe=<?php echo $liste["id"]; ?>"><?php echo $liste["nom"]?></a></td>
+                    <td><?php echo $liste["description"]?> </td>
+                    <td><?php echo $liste["pseudo"]?> </td>
                 </tr>
             <?php } ?>
             </tbody>

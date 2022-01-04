@@ -9,7 +9,7 @@ class Validation
         }
     }
 
-    static function val_form(string $nom, string $description){
+    static function validation_formulaire(string &$nom, string &$description, array &$dVueErreur){
 
         if(!isset($nom) || $nom==""){
             $dVueErreur[] = "pas de nom";
@@ -18,9 +18,6 @@ class Validation
         if(!isset($description) || $description=""){
             $dVueErreur[] = "pas de description";
             $description = "";
-        }
-        else{
-            require '../vues/accueil.php';
         }
     }
 

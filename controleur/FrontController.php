@@ -6,13 +6,16 @@ class FrontController
     public function __construct(){
         global $vues;
         session_start();
+        $action = NULL;
 
         $listeActionAdmin = array("supprimerTachePb", "supprimerListePb", "supprimerUser", "Accueil");
         $listeActionUtilisateur = array("ajouterListePv", "ajouterTachePv", "supprimerTachePbPerso", "Accueil");
         $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "ajouterListePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil");
 
         try{
-            $action = $_REQUEST['action'];
+            if (isset($_REQUEST['action'])) {
+                $action = $_REQUEST['action'];
+            }
 
             if($action != NULL) $action = Nettoyage::nettoyer_string($action);
 

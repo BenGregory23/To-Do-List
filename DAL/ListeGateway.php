@@ -64,7 +64,7 @@ class ListeGateway
      */
     public function ajouterListePv($nom, $description, $pseudo){
         try{
-            $query = 'INSERT INTO lites VALUES(:nom, :description, :pseudo, FALSE )';
+            $query = 'INSERT INTO lites VALUES(:nom, :description, :pseudo, FALSE)';
             $this->con->executeQuery($query, array(
                 ':nom'=>array($nom, PDO::PARAM_STR),
                 ':description'=>array($description, PDO::PARAM_STR),

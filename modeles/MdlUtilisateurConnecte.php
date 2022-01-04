@@ -107,11 +107,6 @@ class MdlUtilisateurConnecte
                 $listes = $user->getListesPub();
                 if (isset($listes) && !empty($listes)) {
                     $id = $listes[0]->getIdListe();
-                } else {
-                    $listes = $user->getListesAbo();
-                    if (isset($listes) && !empty($listes)) {
-                        $id = $listes[0]->getIdListe();
-                    }
                 }
             }
             if (isset($id)) return $mdlTaches->find_Liste_Taches($id);
