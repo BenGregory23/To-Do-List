@@ -18,7 +18,8 @@
         <a class="navbar-brand" href="/">To do list</a>
         <h5 class=" text-white titre">Home</h5>
         <div class="d-flex navbarGauche">
-            <?php if($_SESSION["role"] == NULL){
+            <?php
+            if(!isset($_SESSION["role"])){
                 ?>
             <form class="formConnection" method="get">
                 <input class="btn-header" type="submit" name="action" value="Connexion" />
@@ -115,14 +116,15 @@
             </thead>
             <tbody>
             <?php foreach ($tabListes as $liste){ ?>
-                    <?php if($liste["isPublic"] == 0 && $_SESSION['role'] != "user" && $_SESSION['login'] != $liste['pseudo']) continue; ?>
+                    <?php if(isset($_SESSION['login']) && isset($_SESSION['role'])) {
+                    if($liste["isPublic"] == 0 && $_SESSION['role'] != "user" && $_SESSION['login'] != $liste['pseudo']) continue; ?>
                 <tr>
                     <td><a type="button" href="?action=voirListePb&idListe=<?php echo $liste["id"]; ?>"><?php echo $liste["nom"]?></a></td>
                     <td><?php echo $liste["description"]?> </td>
                     <td><?php echo $liste["pseudo"]?> </td>
                     <td><?php if($liste["isPublic"] == 0) echo "Private"; else echo "Public"; ?>  </td>
                 </tr>
-            <?php } ?>
+            <?php }} ?>
             </tbody>
         </table>
     <?php }else{ ?>

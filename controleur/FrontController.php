@@ -23,10 +23,8 @@ class FrontController
                 if(isset($_SESSION) && ($_SESSION['role'] == 'user')){
                     $mdlUser = new MdlUtilisateur();
                     if($mdlUser->isUser()){
-
                         $ctrlUser = new ControleurUtilisateur($action);
                     }
-
                 }
                 else {
                     require $vues['connexion'];

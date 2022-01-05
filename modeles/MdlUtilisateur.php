@@ -12,19 +12,14 @@ class MdlUtilisateur
      */
     public function connexion($login, $password)
     {
-        global $con;
+        global $con, $vues;
         $userGw = new UserGateway($con);
-        global $vues;
-        Nettoyage::nettoyer_string($login);
-        Nettoyage::nettoyer_string($password);
+
+        $login= Nettoyage::nettoyer_string($login);
+        $password = Nettoyage::nettoyer_string($password);
 
         $loginDB = $userGw->getLogin($login);
         $passwordDB = $userGw->getPassword($login);
-
-        /*
-        echo $loginDB[0]['pseudo'];
-        echo $passwordDB[0]['password'];
-        */
 
         if (($login == $loginDB[0]['pseudo']) && password_verify($password, $passwordDB[0]['password'])   /*$password== $passwordDB[0]['password']*/) {
             $_SESSION['role'] = 'user';
@@ -44,9 +39,5 @@ class MdlUtilisateur
         }else{
             return false;
         }
-    }
-
-    public function deconnexion(){
-        session_destroy();
     }
 }

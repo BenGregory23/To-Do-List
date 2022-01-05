@@ -87,9 +87,7 @@ class ControleurInvite
         try {
 
             $userGw = new UserGateway($con);
-            $login = $_REQUEST["login"];
-            $mdp = $_REQUEST["mdp"];
-            $userGw->inscription($login, $mdp);
+            $userGw->inscription($_REQUEST["login"], $_REQUEST["mdp"]);
             require $vues['accueil'];
         } catch (Exception $e) {
             $erreur = "Erreur lors de l'inscription" . $e;

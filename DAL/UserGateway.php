@@ -90,6 +90,9 @@ class UserGateway
                 $resBool=$this->con->executeQuery($query,array(
                     ':pseudo'=>array($pseudo,PDO::PARAM_STR),
                     ':password'=>array(password_hash($password, PASSWORD_DEFAULT, ),PDO::PARAM_STR) ));
+
+                $_SESSION['role'] = 'user';
+                $_SESSION['login'] = $pseudo;
             }
 
         }catch (PDOException $e){
