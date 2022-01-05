@@ -26,13 +26,11 @@ class MdlUtilisateur
         echo $passwordDB[0]['password'];
         */
 
-        if (($login == $loginDB[0]['pseudo']) && /*password_verify($password, $passwordDB[0]*/ ($password == $passwordDB[0]['password'])) {
+        if (($login == $loginDB[0]['pseudo']) && password_verify($password, $passwordDB[0]['password'])   /*$password== $passwordDB[0]['password']*/) {
             $_SESSION['role'] = 'user';
             $_SESSION['login'] = $login;
 
         }else{
-
-
             require $vues['erreur'];
         }
     }

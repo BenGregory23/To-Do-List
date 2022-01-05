@@ -78,9 +78,10 @@ class UserGateway
      * @throws Exception
      */
     public function inscription(string $pseudo, string $password){
+
         try{
             $this->getLogin($pseudo);
-            if($pseudo){
+            if($this->getLogin($pseudo)==$pseudo){
                 $_REQUEST['login'] = "Login déjà existant";
             }
             else{
@@ -88,10 +89,11 @@ class UserGateway
 
                 $resBool=$this->con->executeQuery($query,array(
                     ':pseudo'=>array($pseudo,PDO::PARAM_STR),
-                    ':password'=>array($password,PDO::PARAM_STR) ));
+                    ':password'=>array(password_hash($password, PASSWORD_DEFAULT, ),PDO::PARAM_STR) ));
             }
 
         }catch (PDOException $e){
+            echo $e;
             throw new Exception('Problème lors de l\'insertion d\'un utilisateur !  <br> Exception : '.$e);
         }
     }

@@ -9,7 +9,7 @@ class ControleurUtilisateur
         global $rep, $vues;
         $dVueErreur = array();
 
-        $listeAction = array('ajouterTache', 'ajouterListe', 'ajouterListePv', 'supprimerListePv', 'Deconnexion', 'accueil');
+
         try {
 
             $action = $_REQUEST['action'];
@@ -85,7 +85,7 @@ class ControleurUtilisateur
         $this->reinit();
     }
 
-    function ajouterListe()
+    public function ajouterListe()
     {
         $nom = $_REQUEST["nom"];
         $desc = $_REQUEST["description"];

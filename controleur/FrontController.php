@@ -8,7 +8,7 @@ class FrontController
         session_start();
         $action = NULL;
 
-        $listeActionUtilisateur = array("ajouterListePv", "ajouterListePb","ajouterTachePv", "supprimerTachePbPerso");
+        $listeActionUtilisateur = array("ajouterListePv", "ajouterListePb","ajouterTachePv", "supprimerTachePbPerso", "Deconnexion");
         $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "ajouterListePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil");
 
         try{
