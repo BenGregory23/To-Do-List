@@ -2,11 +2,11 @@
 
 class Utilisateur
 {
-    public $email;
-    public $etat;
+    public $login;
+    private $password;
+    public $role;
     public $listePublique;
     public $listePrive;
-    public $listeLike;
 
     public function __construct()
     {
@@ -25,36 +25,26 @@ class Utilisateur
     }
 
     public function __construct0(){
-        $this->email = "";
+        $this->login = "";
     }
 
     public function __construct1(string $email, string $etat){
-        $this->email = "";
-        $this->etat = $etat;
+        $this->login = "";
+        $this->role = $etat;
     }
 
     public function __construct2(string $email, string $etat, array $listePrive){
-        $this->email = "";
-        $this->etat = $etat;
+        $this->login = "";
+        $this->role = $etat;
         $this->listePrive = $listePrive;
     }
 
     public function __construct3(string $email, string $etat, array $listePrive, array $listePublique){
-        $this->email = "";
-        $this->etat = $etat;
+        $this->login = "";
+        $this->role = $etat;
         $this->listePrive = $listePrive;
         $this->listePublique = $listePublique;
     }
-
-    public function __construct5(string $email, string $etat, array $listePrive, array $listePublique, $listeLike){
-        $this->email = "";
-        $this->etat = $etat;
-        $this->listePrive = $listePrive;
-        $this->listePublique = $listePublique;
-        $this->listeLike = $listeLike;
-    }
-
-
 
     public static function connexion(string $pseudo, string $mdp){
 
@@ -77,17 +67,25 @@ class Utilisateur
 
     }
 
-    public function getEmail() : string{
-        return $this->email;
+    public function getLogin() : string{
+        return $this->login;
+    }
+
+    public function getPassword() : string{
+        return $this->password;
+    }
+
+    public function getRole() : string{
+        return $this->role;
     }
 
     public function isUserConncected() : Utilisateur
     {
-        if (isset($_SESSION['pseudo']) && isset($_SESSION['role'])){
-            $pseudo=Nettoyage::nettoyer_string($_SESSION['pseudo']);
+        if (isset($_SESSION['login']) && isset($_SESSION['role'])){
+            $login=Nettoyage::nettoyer_string($_SESSION['login']);
             $role=Nettoyage::nettoyer_string($_SESSION['role']);
-            if ($pseudo == "" || $role == "") return new Utilisateur();
-            return new Utilisateur($pseudo,$role);
+            if ($login == "" || $role == "") return new Utilisateur();
+            return new Utilisateur($login,$role);
         }
         return new Utilisateur();
 

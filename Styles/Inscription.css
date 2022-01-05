@@ -5,7 +5,7 @@ body{
     background-image: url(../assets/blob-scene-haikei.svg);
     background-size: cover;
     color: white;
-    font-family: "Liberation Sans";
+    font-family: "Liberation Sans", serif;
     min-height: 100vh;
     height: 100%;
 }

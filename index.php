@@ -17,6 +17,7 @@ require 'controleur/FrontController.php';
 require 'modeles/MdlTache.php';
 require 'modeles/MdlListe.php';
 require 'modeles/MdlUtilisateur.php';
+require 'modeles/MdlUtilisateurConnecte.php';
 
 require_once 'metier/Tache.php';
 require_once 'metier/Liste.php';

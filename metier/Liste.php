@@ -1,6 +1,7 @@
 <?php
 
 class Liste {
+    private $id;
     private $nomListe;
     private $descriptionListe;
     private $pseudoUser;
@@ -20,6 +21,14 @@ class Liste {
     public function getNomListe(): string
     {
         return $this->nomListe;
+    }
+
+    /**
+     * @return string
+     */
+    public function getID(): string
+    {
+        return $this->id;
     }
 
     /**

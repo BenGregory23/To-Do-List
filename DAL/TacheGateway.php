@@ -40,7 +40,8 @@ class TacheGateway
             $this->con->executeQuery($query, array(
                 ':nom'=> array($nom, PDO::PARAM_STR),
                 ':description'=>array($description, PDO::PARAM_STR),
-                ':idListe'=>array($idListe, PDO::PARAM_STR)));
+                ':idListe'=>array($idListe, PDO::PARAM_STR)
+            ));
         }
         catch(PDOException $e){
             throw new Exception('Problème lors de l\'insertion d\'une tache. <br> Exception : '.$e);

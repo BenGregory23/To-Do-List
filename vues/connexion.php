@@ -1,5 +1,3 @@
-
-
 <html>
 <head>
     <link rel="stylesheet" href="../Styles/connexion.css"
@@ -14,7 +12,7 @@
 <div class="div-connexion">
 
     <h2>Connexion</h2>
-    <form method="post" name="ajout-utilisateur" >
+    <form method="post">
         <label>Nom d'utilisateur</label>
         <input type="text" name="login">
         <label> Mot de passe</label>

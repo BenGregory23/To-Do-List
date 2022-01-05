@@ -45,34 +45,18 @@ class ListeGateway
     /**
      * @throws Exception
      */
-    public function ajouterListe($nom, $description, $pseudo){
+    public function ajouterListe($nom, $description, $pseudo, $isPublic){
         try{
-            $query = 'INSERT INTO listes VALUES(NULL,:nom, :description, :pseudo, TRUE)';
+            $query = 'INSERT INTO listes VALUES(NULL, :nom, :description, :pseudo, :isPublic)';
             $this->con->executeQuery($query, array(
                ':nom'=>array($nom, PDO::PARAM_STR),
                 ':description'=>array($description, PDO::PARAM_STR),
-                ':pseudo'=>array($pseudo, PDO::PARAM_STR)
+                ':pseudo'=>array($pseudo, PDO::PARAM_STR),
+                ':isPublic'=>array($isPublic, PDO::PARAM_STR),
             ));
         }
         catch (Exception $e){
             throw new Exception("Erreur lors de  l'ajout d'une liste ! <br>" . $e);
-        }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function ajouterListePv($nom, $description, $pseudo){
-        try{
-            $query = 'INSERT INTO lites VALUES(:nom, :description, :pseudo, FALSE)';
-            $this->con->executeQuery($query, array(
-                ':nom'=>array($nom, PDO::PARAM_STR),
-                ':description'=>array($description, PDO::PARAM_STR),
-                ':pseudo'=>array($pseudo, PDO::PARAM_STR)
-            ));
-        }
-        catch (Exception $e){
-            throw new Exception("Erreur lors de  l'ajout d'une liste privée ! <br>" . $e);
         }
     }
 

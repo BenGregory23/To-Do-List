@@ -53,9 +53,8 @@ class MdlUtilisateurConnecte
     }
 
     public static function deconnexion(){
-        session_unset();
-        session_destroy();
-        $_SESSION=array();
+        $_SESSION["role"] = "";
+        $_SESSION["login"] = "";
     }
 
     public static function isUserCo(): Utilisateur

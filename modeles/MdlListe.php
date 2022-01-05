@@ -13,22 +13,11 @@ class MdlListe
     }
 
 
-    public function mdlAjouterListe($nom, $description){
+    public function mdlAjouterListe($nom, $description, $public, $user){
         global $dsn, $user, $mdp;
         try{
             $listeGw = new ListeGateway(new Connection($dsn, $user,$mdp));
-            $listeGw->ajouterListe($nom, $description, "Public");
-        }
-        catch (Exception $e){
-            echo $e;
-        }
-    }
-
-    public function mdlAjouterListePv($nom, $description, $pseudo){
-        global $dsn, $user, $mdp;
-        try{
-            $listeGw = new ListeGateway(new Connection($dsn, $user,$mdp));
-            $listeGw->ajouterListePv($nom, $description, $pseudo);
+            $listeGw->ajouterListe($nom, $description, $user, $public);
         }
         catch (Exception $e){
             echo $e;

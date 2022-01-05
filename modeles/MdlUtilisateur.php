@@ -7,6 +7,9 @@ class MdlUtilisateur
     public function __construct(){
     }
 
+    /**
+     * @throws Exception
+     */
     public function connexion($login, $password)
     {
         global $con;
