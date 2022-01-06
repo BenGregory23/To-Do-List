@@ -44,6 +44,10 @@ class ControleurInvite
                     $this->voirTachesListe();
                     break;
 
+                case 'changerEtatTache':
+                    $this->changerEtatTache();
+                    break;
+
                 default :
                     require($rep . $vues['accueil']);
                     break;
@@ -81,13 +85,25 @@ class ControleurInvite
         }
     }
 
+    public function changerEtatTache(){
+        global $vues, $con;
+        try{
+            $tacheMdl = new MdlTache();
+            $tacheMdl->modifierEtatTache($_REQUEST['idTache']);
+            require $vues['accueil'];
+        } catch ( Exception $e){
+            $erreur = "Erreur lors du changement de l'état d'une tâche" . $e;
+            $dVueErreur[] = $erreur;
+        }
+    }
+
     public function inscription()
     {
         global $rep, $vues, $con, $dVueErreur;
         try {
 
-            $userGw = new UserGateway($con);
-            $userGw->inscription($_REQUEST["login"], $_REQUEST["mdp"]);
+           $userMdl = new MdlUtilisateur();
+           $userMdl->inscription($_REQUEST["login"], $_REQUEST["mdp"]);
             require $vues['accueil'];
         } catch (Exception $e) {
             $erreur = "Erreur lors de l'inscription" . $e;
@@ -124,7 +140,7 @@ class ControleurInvite
 
     public function ajouterTache()
     {
-        global $dVueErreur;
+        global $dVueErreur, $vues;
         try {
             $nom = $_REQUEST["nom"];
             $desc = $_REQUEST["description"];
@@ -132,6 +148,7 @@ class ControleurInvite
             if ($nom && $desc) {
                 $tache = new MdlTache();
                 $tache->ajouterTache($nom, $desc, $idListe);
+                require $vues['tachesListe'];
             }
         } catch (Exception $e) {
             $erreur = "Erreur lors de l'ajout d'une tache publique" . $e;
@@ -142,12 +159,12 @@ class ControleurInvite
 
     private function ajouterListe()
     {
-        global $dVueErreur;
+        global $dVueErreur, $vues;
         try {
             $nom = $_REQUEST["nom"];
             $desc = $_REQUEST["description"];
 
-            if (isset( $_REQUEST["isPublic"])) $public = 1;
+            if (isset($_REQUEST["isPublic"]) || $_SESSION['login'] == "") $public = 1;
             else $public = 0;
 
             if($_SESSION['login'] != "") $user = $_SESSION['login'];
@@ -156,6 +173,7 @@ class ControleurInvite
             if ($nom && $desc) {
                 $liste = new MdlListe();
                 $liste->mdlAjouterListe($nom, $desc, $public, $user);
+                require $vues["accueil"];
             }
         } catch (Exception $e) {
             $erreur = "Erreur lors de l'ajout d'une tache publique" . $e;

@@ -19,7 +19,7 @@
         <h5 class=" text-white titre">Home</h5>
         <div class="d-flex navbarGauche">
             <?php
-            if(!isset($_SESSION["role"])){
+            if(!isset($_SESSION["role"]) || $_SESSION["role"] == ''){
                 ?>
             <form class="formConnection" method="get">
                 <input class="btn-header" type="submit" name="action" value="Connexion" />
@@ -80,7 +80,7 @@
                     <div class="col">
                         <label>
                             <input id="inputPrivateChecker" name="isPublic" type="checkbox">
-                            Private list
+                            Public list
                         </label>
                     </div>
                     <?php
@@ -108,8 +108,8 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">List title</th>
-                <th scope="col">Type</th>
+                <th scope="col">Listes</th>
+                <th scope="col">Description</th>
                 <th scope="col">Pseudonyme</th>
                 <th scope="col">Public or Private</th>
             </tr>
@@ -117,7 +117,7 @@
             <tbody>
             <?php foreach ($tabListes as $liste){ ?>
                     <?php if(isset($_SESSION['login']) && isset($_SESSION['role'])) {
-                    if($liste["isPublic"] == 0 && $_SESSION['role'] != "user" && $_SESSION['login'] != $liste['pseudo']) continue; ?>
+                    if($liste["isPublic"] == 0 && ($_SESSION['login'] != $liste['pseudo'])) continue; ?>
                 <tr>
                     <td><a type="button" href="?action=voirListePb&idListe=<?php echo $liste["id"]; ?>"><?php echo $liste["nom"]?></a></td>
                     <td><?php echo $liste["description"]?> </td>

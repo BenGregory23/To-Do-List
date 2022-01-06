@@ -36,7 +36,7 @@ class TacheGateway
      */
     public function ajouterTache($nom, $description, $idListe){
         try{
-            $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 'A Faire', :idListe)";
+            $query = "INSERT INTO tache VALUES(NULL, :nom, :description, 0, :idListe)";
             $this->con->executeQuery($query, array(
                 ':nom'=> array($nom, PDO::PARAM_STR),
                 ':description'=>array($description, PDO::PARAM_STR),
@@ -82,4 +82,21 @@ class TacheGateway
             throw new Exception('Problème de la suppression d\'une tâche ! <br>Exception : ' .$e);
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function modifierEtatTache($id){
+    try{
+        $query = 'UPDATE tache
+                      SET etat = NOT etat
+                      WHERE id = :id';
+        $this->con->executeQuery($query, array(
+            ':id'=>array($id, PDO::PARAM_INT)
+        ));
+    }
+    catch(PDOException $e){
+        throw new Exception('Problème de la modification d\'une tâche ! <br>Exception : ' .$e);
+    }
+}
 }

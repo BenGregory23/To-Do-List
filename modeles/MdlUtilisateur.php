@@ -30,6 +30,26 @@ class MdlUtilisateur
         }
     }
 
+    public function inscription($login, $password){
+        global $con, $vues;
+        $userGw = new UserGateway($con);
+
+        $login= Nettoyage::nettoyer_string($login);
+        $password = Nettoyage::nettoyer_string($password);
+
+        $loginDB = $userGw->getLogin($login);
+
+        if (($login != $loginDB[0]['pseudo'])) {
+            $userGw = new UserGateway($con);
+            $userGw->inscription($login, $password);
+            $_SESSION['role'] = 'user';
+            $_SESSION['login'] = $login;
+
+        }else{
+            require $vues['erreur'];
+        }
+    }
+
     public function isUser(): bool
     {
         if(isset($_SESSION['login']) && isset($_SESSION['role'])){

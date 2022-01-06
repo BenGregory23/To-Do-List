@@ -5,11 +5,10 @@ class FrontController
 
     public function __construct(){
         global $vues;
-        session_start();
         $action = NULL;
 
         $listeActionUtilisateur = array("ajouterListePv", "ajouterListePb","ajouterTachePv", "supprimerTachePbPerso", "Deconnexion");
-        $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "ajouterListePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil");
+        $listeActionInvite = array("Inscription", "Connexion", "ajouterTachePb", "ajouterListePb", "voirListePb", "S'inscrire", "validerInscription", "validerConnexion", "Accueil","changerEtatTache");
 
         try{
             if (isset($_REQUEST['action'])) {

@@ -2,10 +2,8 @@
 require 'Connection.php';
 
 $dsn = 'mysql:host=localhost;dbname=toDoList';
-$user = "ben";
-$mdp = "choco2323";
-$idLogin['login'] = 0;
-$tabListes = NULL;
+$user = "ZartaX0O3";
+$mdp = "Panda567&";
 
 try{
     $con = new Connection($dsn, $user, $mdp);

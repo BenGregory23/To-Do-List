@@ -3,7 +3,7 @@
     <title>Acceuil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="../Styles/accueil.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
@@ -26,10 +26,20 @@
         <a class="navbar-brand" href="/">To do list</a>
         <h5 class=" text-white titre">Home</h5>
         <div class="d-flex navbarGauche">
-            <form class="formConnection" method="get">
-                <input type="image" width="30" height="30" value="Se connecter" alt=""/>
-                <input type="hidden" name="action" value="connection"/>
-            </form>
+            <?php
+            if(!isset($_SESSION["role"]) || $_SESSION["role"] == ''){
+                ?>
+                <form class="formConnection" method="get">
+                    <input class="btn-header" type="submit" name="action" value="Connexion" />
+                </form>
+                <form class="formConnection" method="get">
+                    <input  class="btn-header" type="submit" name="action" value="Inscription"/>
+                </form>
+            <?php } else { ?>
+                <form class="formConnection" method="get">
+                    <input  class="btn-header" type="submit" name="action" value="Deconnexion"/>
+                </form>
+            <?php } ?>
         </div>
     </div>
 </nav>
@@ -75,13 +85,15 @@
             <tr>
                 <th scope="col">Titre de la Tâche</th>
                 <th scope="col">Description</th>
+                <th scope="col">Etat de la Tache</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($tabTaches as $tache) { ?>
+            <?php foreach ($tabTaches as $tache) {  ?>
                 <tr>
                     <td><?php echo $tache["nom"] ?> </td>
                     <td><?php echo $tache["description"] ?> </td>
+                    <td><form method="post"><a type="button" href="?action=changerEtatTache&idTache=<?php echo $tache['id']; ?>" <?php if($tache["etat"] == 1) echo "checked"; ?>"> <?php if($tache['etat'] == 0) echo 'A Faire'; else echo 'Terminé'; ?></form></td>
                 </tr>
             <?php } ?>
             </tbody>

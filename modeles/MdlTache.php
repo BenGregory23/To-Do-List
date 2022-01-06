@@ -41,4 +41,15 @@ class MdlTache
             echo $e;
         }
     }
+
+    public function modifierEtatTache($id){
+        global $dsn, $user, $mdp;
+        try{
+            $tacheGw =  new TacheGateway(new Connection($dsn, $user,$mdp));
+            $tacheGw->modifierEtatTache($id);
+        }
+        catch(Exception $e){
+            echo $e;
+        }
+    }
 }
